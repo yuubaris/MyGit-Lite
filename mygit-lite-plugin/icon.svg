@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="MyGit Lite">
+  <defs>
+    <linearGradient id="g" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f766e"/>
+      <stop offset="1" stop-color="#0b3b3a"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="56" height="56" rx="16" fill="url(#g)"/>
+  <path d="M22 20v24" fill="none" stroke="#e8fffb" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="22" cy="18" r="5" fill="#e8fffb"/>
+  <circle cx="22" cy="46" r="5" fill="#e8fffb"/>
+  <path d="M26 24h9a8 8 0 0 1 8 8v4" fill="none" stroke="#9df5e4" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="43" cy="42" r="5" fill="#9df5e4"/>
+</svg>

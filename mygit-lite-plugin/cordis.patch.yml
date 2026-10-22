@@ -1,0 +1,3 @@
+- insert:
+    - id: mygit-lite
+      name: '@local/mygit-lite'

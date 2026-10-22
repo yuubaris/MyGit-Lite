@@ -1,0 +1,42 @@
+services:
+  mygit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mygit-lite:latest
+    pull_policy: build
+    container_name: mygit
+    restart: unless-stopped
+    ports:
+      - "${MYGIT_PORT:-8443}:8443"
+    environment:
+      MYGIT_DATA_DIR: /var/lib/mygit/data
+      MYGIT_DB: /var/lib/mygit/mygit.db
+      MYGIT_TOKEN_FILE: /var/lib/mygit/token
+      MYGIT_AUTHOR: "${MYGIT_AUTHOR:-admin}"
+      MYGIT_BIND: 0.0.0.0:8443
+      MYGIT_WORKERS: "${MYGIT_WORKERS:-1}"
+      MYGIT_THREADS: "${MYGIT_THREADS:-4}"
+      MYGIT_LOG_LEVEL: "${MYGIT_LOG_LEVEL:-info}"
+      MYGIT_MAX_UPLOAD_MB: "${MYGIT_MAX_UPLOAD_MB:-200}"
+      MYGIT_MAX_FILES: "${MYGIT_MAX_FILES:-20000}"
+      MYGIT_MAX_UNCOMPRESSED_MB: "${MYGIT_MAX_UNCOMPRESSED_MB:-500}"
+      MYGIT_GC_GRACE_H: "${MYGIT_GC_GRACE_H:-24}"
+    volumes:
+      - mygit-data:/var/lib/mygit
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8443/health', timeout=3)"
+      interval: 5m
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    security_opt:
+      - no-new-privileges:true
+    stop_grace_period: 30s
+
+volumes:
+  mygit-data:
